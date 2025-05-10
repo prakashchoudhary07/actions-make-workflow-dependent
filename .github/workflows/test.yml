@@ -13,4 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Running tests"
-      - run: exit 1
+      - name: Random pass/fail (50% chance)
+        run: |
+          # Generate a random number between 0-99
+          RANDOM_NUM=$(($RANDOM % 100))
+          echo "Random number: $RANDOM_NUM"
+          
+          # If number is less than 50, fail the workflow
+          if [ $RANDOM_NUM -lt 50 ]; then
+            echo "Randomly failing the workflow (50% chance)"
+            exit 1
+          else
+            echo "Randomly passing the workflow (50% chance)"
+          fi
