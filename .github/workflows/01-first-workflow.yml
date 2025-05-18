@@ -1,6 +1,8 @@
 name: First_Workflow
 
 on:
+  push:
+    # Trigger on push to any branch
   pull_request:
     # Trigger on pull requests to any branch
   # Allow manual trigger
@@ -17,3 +19,18 @@ jobs:
         run: |
           echo "Running first job tasks"
           echo "First workflow completed successfully"
+          
+      - name: Report status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const sha = context.sha;
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha,
+              state: 'success',
+              context: 'First Workflow Status',
+              description: 'First workflow completed successfully'
+            });

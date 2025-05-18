@@ -21,6 +21,21 @@ jobs:
         run: |
           echo "Running third job tasks"
           echo "Third part completed successfully"
+          
+      - name: Report status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const sha = context.payload.workflow_run.head_sha;
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha,
+              state: 'success',
+              context: 'Third Job Status',
+              description: 'Third job completed successfully'
+            });
   
   fourth-job:
     needs: third-job
@@ -36,3 +51,18 @@ jobs:
           
       - name: Final success message
         run: echo "All workflows have completed successfully!"
+        
+      - name: Report final status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const sha = context.payload.workflow_run.head_sha;
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha,
+              state: 'success',
+              context: 'Final Workflow Status',
+              description: 'All sequential workflows completed successfully'
+            });
