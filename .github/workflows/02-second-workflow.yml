@@ -1,8 +1,8 @@
-name: Second Workflow
+name: Second_Workflow
 
 on:
   workflow_run:
-    workflows: [First Workflow]
+    workflows: [First_Workflow]
     types:
       - completed
     branches:

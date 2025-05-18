@@ -1,8 +1,6 @@
-name: First Workflow
+name: First_Workflow
 
 on:
-  push:
-    # Trigger on push to any branch
   pull_request:
     # Trigger on pull requests to any branch
   # Allow manual trigger
