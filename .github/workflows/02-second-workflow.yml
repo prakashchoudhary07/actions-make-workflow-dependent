@@ -5,6 +5,8 @@ on:
     workflows: [First Workflow]
     types:
       - completed
+    branches:
+      - '**'  # Run on all branches
 
 jobs:
   second-job:
