@@ -1,0 +1,21 @@
+name: First Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run first job tasks
+        run: |
+          echo "Running first job tasks"
+          echo "First workflow completed successfully"
