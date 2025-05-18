@@ -22,17 +22,3 @@ jobs:
           echo "Running second job tasks"
           echo "Second workflow completed successfully"
           
-      - name: Report status
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const { owner, repo } = context.repo;
-            const sha = context.payload.workflow_run.head_sha;
-            await github.rest.repos.createCommitStatus({
-              owner,
-              repo,
-              sha,
-              state: 'success',
-              context: 'Second Workflow Status',
-              description: 'Second workflow completed successfully'
-            });
