@@ -2,9 +2,9 @@ name: First Workflow
 
 on:
   push:
-    branches: [ main ]
+    # Trigger on push to any branch
   pull_request:
-    branches: [ main ]
+    # Trigger on pull requests to any branch
   # Allow manual trigger
   workflow_dispatch:
 
